@@ -9,16 +9,17 @@ nhrp_pattern = re.compile('^(H)\s(((25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}(25[
 pattern_list = [ospf_pattern,eigrp_pattern,dir_conn_pattern,isis_pattern,nhrp_pattern]
 
 base = {'O':'OSPF', 
-		'E1':'external type 1 route', 
-		'E2':'external type 2 route',
-		'IA':'inter area route',
+		'E1':'external type 1', 
+		'E2':'external type 2',
+		'IA':'OSPF inter area',
 		'D':'EIGRP',
-		'E':'EIGRP external',
+		'EX':'EIGRP external',
+		'E':'EGP',
 		'C':'Directly connected',
 		'S':'Static',
-		'R':'RIP derived',
+		'R':'RIP',
 		'ia':'IS-IS inter area',
-		'i':'IS-IS derived',
+		'i':'IS-IS',
 		'L1':'level 1',
 		'L2':'level 2',
 		'H':'NHRP'}
@@ -38,7 +39,7 @@ for line in read_data:
 				print('Next-Hop:           {}'.format(match.group(8)))
 				print('Last update:        {}'.format(match.group(12)))
 				print('Outbound interface: {}\n'.format(match.group(13)))
-			elif match.group(1)=='D'or match.group(1)=='E' or match.group(1)=='R' or match.group(1)=='H':
+			elif match.group(1)=='D'or match.group(1)=='E' or match.group(1)=='R' or match.group(1)=='H' or match.group(1)=='EX':
 				print('Protocol:           {}'.format(base[match.group(1)]))
 				print('Prefix:             {}'.format(match.group(2)))
 				print('AD/Metric:          {}'.format(match.group(6)))
