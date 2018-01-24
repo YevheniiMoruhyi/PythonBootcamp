@@ -1,16 +1,17 @@
+#!/usr/bin/env python
 import re
 ip_address_pattern = re.compile('^((25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)\.){3}(25[0-5]|2[0-4]\d|1\d\d|[1-9]\d|\d)$')
 sub_mask_pattern = re.compile('^(3[0-2]|[1-2]\d|\d)$')
 
-ip_address = input('Enter Ip address:')
+ip_address = raw_input('Enter Ip address:')
 while ip_address_pattern.search(ip_address)==None:
 	print('Invalid IP address format')
-	ip_address = input('Enter Ip address:')
+	ip_address = raw_input('Enter Ip address:')
 
-sub_mask = input('Enter subnet mask in decimal format:')
+sub_mask = raw_input('Enter subnet mask in decimal format:')
 while sub_mask_pattern.search(sub_mask)==None:
 	print('Subnet mask is invalid')
-	sub_mask = input('Enter subnet mask in decimal format:')
+	sub_mask = raw_input('Enter subnet mask in decimal format:')
 
 ip_octet_list = []
 for obj in ip_address.split('.'):

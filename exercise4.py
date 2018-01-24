@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import re
 mode_pattern = re.compile('^(access|trunk)$')
 interface_pattern = re.compile('^((([Ff]ast|[Gg]igabit)?[Ee]thernet)|([Ff]a?|[Gg]a?|[Ee]))(\d{1,3}\/\d{1,3}(\/\d{1,3})?)$')
@@ -20,21 +21,21 @@ trunk_template = ['switchport trunk encapsulation dot1q',
 
 'switchport trunk allowed vlan {}']
 
-mode = input('Enter interface mode(access/trunk):')
+mode = raw_input('Enter interface mode(access/trunk):')
 while mode_pattern.search(mode)==None:
 	print('Invalid mode\n')
-	mode = input('Enter interface mode(access/trunk):')
+	mode = raw_input('Enter interface mode(access/trunk):')
 
-interface = input('Enter interface type and number:')
+interface = raw_input('Enter interface type and number:')
 while interface_pattern.search(interface)==None:
 	print('Invalid interface type and number\n')
-	interface = input('Enter interface type and number:')
+	interface = raw_input('Enter interface type and number:')
 
 if mode == 'access':
-	vlan = input('Enter VLAN number:')
+	vlan = raw_input('Enter VLAN number:')
 	while vlan_pattern.search(vlan)==None:
 		print('VLAN number is invalid\n')
-		vlan = input('Enter VLAN number:')
+		vlan = raw_input('Enter VLAN number:')
 	print('Switch_1#sh run | in {}'.format(interface))
 	print('Interface ' + interface)
 	print(access_template[0])
@@ -43,10 +44,10 @@ if mode == 'access':
 	print(access_template[3])
 	print(access_template[4])
 else:
-	allow_vl = input('Enter allowed VLANs:')
+	allow_vl = raw_input('Enter allowed VLANs:')
 	while allow_vl_pattern.search(allow_vl)==None:
 		print('VLANs are invalid\n')
-		allow_vl = input('Enter allowed VLANs:')
+		allow_vl = raw_input('Enter allowed VLANs:')
 	print('Switch_1#sh run | in {}'.format(interface))
 	print('Interface ' + interface)
 	print(trunk_template[0])

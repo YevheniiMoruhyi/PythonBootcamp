@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import re
 pattern = re.compile('^switchport trunk allowed vlan\s(\d.*)')
 
